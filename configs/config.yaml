@@ -1,0 +1,41 @@
+# ============================================================
+#  Self-Pruning Neural Network — Experiment Configuration
+# ============================================================
+
+# ── Data settings ─────────────────────────────────────────────
+data:
+  data_dir:    "./data"
+  num_workers: 2          # DataLoader worker processes
+
+# ── Model architecture ─────────────────────────────────────────
+model:
+  hidden_dims:    [1024, 512, 256]   # Width of each hidden layer
+  num_classes:    10                  # CIFAR-10 classes
+  dropout_p:      0.3                 # Dropout probability
+  gate_init_mean: 0.5                 # Initial gate open probability
+
+# ── Training hyperparameters ───────────────────────────────────
+training:
+  epochs:        30
+  batch_size:    128
+  learning_rate: 1e-3
+  min_lr:        1e-5    # CosineAnnealingLR lower bound
+  weight_decay:  1e-4    # AdamW / Adam weight decay
+
+# ── Sparsity experiment ────────────────────────────────────────
+experiment:
+  # Lambda values to sweep. Controls sparsity-vs-accuracy trade-off.
+  #   low    → minimal pruning, high accuracy
+  #   medium → balanced
+  #   high   → aggressive pruning, potential accuracy drop
+  lambda_values: [0.0001, 0.001, 0.01]
+
+# ── Evaluation ────────────────────────────────────────────────
+evaluation:
+  sparsity_threshold: 0.01   # Gates below this are considered pruned
+
+# ── Output paths ──────────────────────────────────────────────
+output:
+  checkpoint_dir: "./checkpoints"
+  results_dir:    "./results"
+  log_dir:        "./logs"

@@ -1,0 +1,13 @@
+# Core ML framework
+torch>=2.1.0
+torchvision>=0.16.0
+
+# Config parsing
+PyYAML>=6.0
+
+# Numerical & visualisation
+numpy>=1.24.0
+matplotlib>=3.8.0
+
+# Optional: progress bars in training loop
+tqdm>=4.66.0
