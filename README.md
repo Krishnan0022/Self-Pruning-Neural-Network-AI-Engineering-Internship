@@ -226,6 +226,3 @@ Starting gates at ~0.5 means the network begins in a "soft" state — no bias to
 
 ---
 
-## License
-
-MIT
